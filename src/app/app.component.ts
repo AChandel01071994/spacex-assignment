@@ -10,7 +10,6 @@ import { Launch } from "../models/launch";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'spacex';
   data: Launch[] = [];
 
   constructor(
