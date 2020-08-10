@@ -11,7 +11,6 @@ import { Launch } from "../models/launch";
 })
 export class AppComponent {
   data: Launch[] = [];
-
   constructor(
     private httpClient: HttpClient,
     private route: ActivatedRoute
