@@ -1,5 +1,6 @@
 # Spacex
 
+spacex launches data
 
 ## Development server
 
@@ -11,7 +12,7 @@ Run `npm run build:ssr` to build the project. The build artifacts will be stored
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io), CI already setup using Github Actions.
 
 ## Running end-to-end tests
 
