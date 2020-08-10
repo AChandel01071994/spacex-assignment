@@ -26,7 +26,10 @@ jobs:
     - name: install dependencies
       run: npm install
 
+    - name: Run tests
+      run: npm install
+
     # Runs a set of commands using the runners shell
-    - name: Run test
+    - name: Build Code
       run: |
-        npm run test
+        npm run build:ssr
