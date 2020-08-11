@@ -1,6 +1,13 @@
 # Spacex
 
-spacex launches data
+spacex launches data (SSR using Angular Universal and Node js)
+
+## Requirements
+
+- node >= 10.0.0
+- typescript >= 3.8.0
+- express >= 4.0.0
+- @angular/cli >= 10.0.0
 
 ## Development server
 
