@@ -1,6 +1,6 @@
 # Spacex
 
-spacex launches data (SSR using Angular Universal and Node js)
+spacex launches data (SSR using Angular Universal and Node js, CI using github actions)
 
 ## Requirements
 
