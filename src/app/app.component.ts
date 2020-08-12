@@ -1,44 +1,106 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Launch } from "../models/launch";
+import { Observable } from 'rxjs';
+import { ThrowStmt } from '@angular/compiler';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  data: Launch[] = [];
+export class AppComponent implements OnInit {
+  launchData: Launch[] = [];
+  successfulLaunch = '';
+  successfulLanding = '';
+  launchyear = -1;
+  inTheBrowser: boolean;
+  inTheServer: boolean;
+
   constructor(
     private httpClient: HttpClient,
-    private route: ActivatedRoute
-  ) { }
-
-  ngOnInit() {
-    this.route.queryParams.pipe(
-      switchMap(params => {
-        const { limit, launch_success, land_success, launch_year } = params;
-        return this.getSpaceXData(launch_success, land_success, launch_year, limit || '100');
-      })
-    ).subscribe(res => {
-      this.data = res;
-    })
-
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    @Inject(PLATFORM_ID) platformId: string,
+    private ngxService: NgxUiLoaderService
+  ) {
+    this.inTheBrowser = isPlatformBrowser(platformId);
+    this.inTheServer = isPlatformServer(platformId);
   }
 
-  getSpaceXData(launchSuccess?: string, landSuccess?: string, launchYear?: string, limit?: string) {
-    // usually we create a http service separatly
-    // we can also move this call to server-side/nodejs code
-    let qParams: any = {}, url = `https://api.spaceXdata.com/v3/launches`;
-    if (limit) qParams.limit = limit;
-    if (launchSuccess) qParams.launch_success = launchSuccess;
-    if (landSuccess) qParams.land_success = landSuccess;
-    if (launchYear) qParams.launch_year = launchYear;
-    // form full url with query params
-    url = `${url}?${new URLSearchParams(qParams).toString()}`;
+  ngOnInit() {
+    this.activatedRoute.queryParams.pipe(
+      switchMap(params => {
+        const { launch_success, land_success, launch_year } = params;
+        this.successfulLaunch = launch_success || '';
+        this.successfulLanding = land_success || '';
+        this.launchyear = launch_year ? parseInt(launch_year) - 2006 : -1;
+        return this.getSpaceXData();
+      })
+    ).subscribe(res => {
+      this.launchData = res;
+      this.ngxService.stop()
+    })
+  }
+
+  getSpaceXData(): Observable<Launch[]> {
+    // TODO: usually we create a http service separatly
+    const baseUrl = `https://api.spaceXdata.com/v3/launches`;
+    // use absolute URL instead of relative URL
+    // const baseUrl = `/api/launchdata`;
+    let url = `${baseUrl}?limit=100&${new URLSearchParams(this.genQueryParams()).toString()}`;
+    this.ngxService.start()
     return this.httpClient.get<Launch[]>(url);
+  }
+
+  genQueryParams() {
+    let qParams: any = {};
+    if (this.successfulLaunch) qParams.launch_success = this.successfulLaunch;
+    if (this.successfulLanding) qParams.land_success = this.successfulLanding;
+    if (this.launchyear >= 0) {
+      qParams.launch_year = String(this.launchyear + 2006);
+    }
+    return qParams;
+  }
+
+  onYearClick(index: number) {
+    if (this.launchyear === index) {
+      this.launchyear = -1;
+    } else {
+      this.launchyear = index;
+    }
+    this.updateURL()
+  }
+
+  updateURL() {
+    this.router.navigate(
+      [],
+      {
+        relativeTo: this.activatedRoute,
+        queryParams: this.genQueryParams()
+      })
+  }
+
+  onLaunchClick(val: string) {
+    if (val === this.successfulLaunch) {
+      this.successfulLaunch = '';
+    } else {
+      this.successfulLaunch = val;
+    }
+    this.updateURL()
+  }
+
+  onLandingClick(val: string) {
+    if (val === this.successfulLanding) {
+      this.successfulLanding = '';
+    } else {
+      this.successfulLanding = val;
+    }
+    this.updateURL();
   }
 
 }

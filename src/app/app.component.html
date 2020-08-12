@@ -1,3 +1,35 @@
-<ul>
-  <li *ngFor="let d of data">{{ d.mission_name }}</li>
-</ul>
+<div class="container content">
+  <h1>SpaceX Launch Programs</h1>
+  <div>
+    <div>
+      <h4>Filters</h4>
+      Launch Year
+      <button class="not-active-year" [class.active-year]="launchyear === i"
+        *ngFor="let item of [].constructor(15); let i = index" (click)="onYearClick(i)">{{ 2006 + i }}</button>
+    </div>
+
+    <div>
+      Successful Launch
+      <button class="not-active-year" [class.active-year]="successfulLaunch === 'true'"
+        (click)="onLaunchClick('true')">True</button>
+      <button class="not-active-year" [class.active-year]="successfulLaunch === 'false'"
+        (click)="onLaunchClick('false')">False</button>
+    </div>
+
+    <div>
+      Successful Landing
+      <button class="not-active-year" [class.active-year]="successfulLanding === 'true'"
+        (click)="onLandingClick('true')">True</button>
+      <button class="not-active-year" [class.active-year]="successfulLanding === 'false'"
+        (click)="onLandingClick('false')">False</button>
+    </div>
+  </div>
+
+  <div>
+    <div class="row">
+      <app-launch-card class="col-md-3" [launchData]="data" *ngFor="let data of launchData"></app-launch-card>
+    </div>
+    <h4>Developed by:</h4> Abhishek Chandel (eci.achandel@gmail.com)
+  </div>
+</div>
+<ngx-ui-loader></ngx-ui-loader>

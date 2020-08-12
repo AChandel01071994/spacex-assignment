@@ -1,6 +1,6 @@
-# Spacex
+# SpaceX launch Programs
 
-spacex launches data (SSR using Angular Universal and Node js, CI using github actions)
+spacex launche program data (SSR using Angular Universal and Node js, CI is implemented using github actions)
 
 ## Requirements
 
@@ -27,4 +27,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ## Lighthouse Report
 
-![alt text](https://github.com/AChandel01071994/spacex-assignment/blob/master/lighthouse-performance.png)
+![alt text](https://github.com/AChandel01071994/spacex-assignment/blob/master/lighthouse-performance-snap.png)

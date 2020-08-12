@@ -1,0 +1,12 @@
+<div>
+    <img src="{{launchData.links.mission_patch_small}}" alt="img">
+    <h4>{{launchData.mission_name}} #{{ launchData.flight_number }}</h4>
+
+    <ul>
+        <h4>Mission Ids:</h4>
+        <li *ngFor="let mId of launchData.mission_id">{{ mId }}</li>
+    </ul>
+    <h4>Launch Year:</h4> {{launchData.launch_year}}
+    <h4>Successful Launch:</h4> {{launchData.launch_success === true ? 'yes' : 'no'}}
+    <h4>Successful Landing:</h4> {{launchData.rocket.first_stage.cores[0]?.land_success === true ? 'yes' : 'no'}}
+</div>
