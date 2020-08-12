@@ -1,0 +1,24 @@
+.item {
+    padding: 20px;
+    height: 100%;
+    border-radius: 4px;
+    background-color: white;
+    img {
+        background-color: #ddd;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    strong {
+        padding-right: 10px;
+    }
+    .name {
+        font-size: 18px;
+        font-weight: bold;
+        padding: 10px 0;
+        display: block;
+    }
+    .detail {
+        display: flex;
+    }
+}

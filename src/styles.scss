@@ -8,3 +8,11 @@ $grid-breakpoints: (
 );
 @import '~bootstrap/scss/bootstrap-reboot';
 @import '~bootstrap/scss/bootstrap-grid';
+
+body {
+  background: #f1f1f1;
+}
+
+* {
+  box-sizing: border-box;
+}

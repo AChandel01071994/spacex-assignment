@@ -2,17 +2,70 @@
   max-width: 1440px;
 }
 
-.active-year {
-  background-color: green !important;
-}
-
-.not-active-year {
-  background-color: greenyellow;
+.main-wrap {
+  padding: 15px;
 }
 
 .filter-wrap {
   width: 200px;
+  height: 100%;
+  background-color: white;
+  border-radius: 4px;
+  padding: 10px 0;
+  h3 {
+    padding-left: 10px;
+  }
+  .title {
+    text-align: center;
+    margin: 0 20px;
+    border-bottom: 1px solid #000;
+  }
   .btn-wrap {
-    
+    margin-bottom: 20px;
+    button {
+      margin: 10px 10px;
+      padding: 2px 20px;
+      display: inline-block;
+      background-color: #c5e09b;
+      border: 0;
+      border-radius: 4px;
+      outline: none;
+      color: #000000;
+      &.active-year {
+        background-color: #7cba01;
+      }
+    }
+  }
+}
+
+.main-body {
+  width: calc(100% - 200px);
+  padding-left: 40px;
+  .item-wrap {
+    padding: 10px;
+    width: 25%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main-body {
+    .item-wrap {
+      width: 50%;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .main-wrap {
+    .filter-wrap {
+      width: 100%;
+    }
+    .main-body {
+      width: 100%;
+      padding: 0;
+      .item-wrap {
+        width: 100%;
+      }
+    }
   }
 }
