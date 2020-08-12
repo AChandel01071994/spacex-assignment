@@ -1,6 +1,6 @@
 # SpaceX launch Programs
 
-spacex launche program data (SSR using Angular Universal and Node js, CI is implemented using github actions)
+spacex launch program data (SSR using Angular Universal and Node js, CI is implemented using github actions)
 
 ## Requirements
 
