@@ -1,7 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { NgxUiLoaderService, NgxUiLoaderModule } from 'ngx-ui-loader';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -9,7 +10,11 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
-      imports: [ HttpClientTestingModule,  RouterModule.forRoot([]) ]
+      imports: [
+        HttpClientTestingModule,
+        RouterModule.forRoot([]),
+        NgxUiLoaderModule
+      ]
     }).compileComponents();
   }));
 

@@ -25,16 +25,17 @@ export class AppComponent implements OnInit {
     private httpClient: HttpClient,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    @Inject(PLATFORM_ID) platformId: string,
     private ngxService: NgxUiLoaderService
+    // @Inject(PLATFORM_ID) platformId: string,
   ) {
-    this.inTheBrowser = isPlatformBrowser(platformId);
-    this.inTheServer = isPlatformServer(platformId);
+    // this.inTheBrowser = isPlatformBrowser(platformId);
+    // this.inTheServer = isPlatformServer(platformId);
   }
 
   ngOnInit() {
     this.activatedRoute.queryParams.pipe(
       switchMap(params => {
+        // read query params
         const { launch_success, land_success, launch_year } = params;
         this.successfulLaunch = launch_success || '';
         this.successfulLanding = land_success || '';
@@ -58,6 +59,7 @@ export class AppComponent implements OnInit {
   }
 
   genQueryParams() {
+    // generate query param object
     let qParams: any = {};
     if (this.successfulLaunch) qParams.launch_success = this.successfulLaunch;
     if (this.successfulLanding) qParams.land_success = this.successfulLanding;
