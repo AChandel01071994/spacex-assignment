@@ -1,31 +1,42 @@
-<div class="container content">
+<div class="main-wrap">
+  <div class="container">
   <h1>SpaceX Launch Programs</h1>
-  <div>
+  <div class="row">
+    <div class="filter-wrap">
+      <div>
+        <h3>Filters</h3>
+        <h4 class="title">
+          Launch Year
+        </h4>
+        <div class="btn-wrap">
+          <button class="not-active-year" [class.active-year]="launchyear === i"
+          *ngFor="let item of [].constructor(15); let i = index" (click)="onYearClick(i)">{{ 2006 + i }}</button>
+        </div>
+      </div>
     <div>
-      <h4>Filters</h4>
-      Launch Year
-      <button class="not-active-year" [class.active-year]="launchyear === i"
-        *ngFor="let item of [].constructor(15); let i = index" (click)="onYearClick(i)">{{ 2006 + i }}</button>
-    </div>
-
-    <div>
-      Successful Launch
+      
+      <h4 class="title">
+        Successful Launch
+      </h4>
       <button class="not-active-year" [class.active-year]="successfulLaunch === 'true'"
-        (click)="onLaunchClick('true')">True</button>
+      (click)="onLaunchClick('true')">True</button>
       <button class="not-active-year" [class.active-year]="successfulLaunch === 'false'"
-        (click)="onLaunchClick('false')">False</button>
+      (click)="onLaunchClick('false')">False</button>
     </div>
-
+    
     <div>
-      Successful Landing
+     
+      <h4 class="title">
+        Successful Landing
+      </h4>
       <button class="not-active-year" [class.active-year]="successfulLanding === 'true'"
-        (click)="onLandingClick('true')">True</button>
+      (click)="onLandingClick('true')">True</button>
       <button class="not-active-year" [class.active-year]="successfulLanding === 'false'"
-        (click)="onLandingClick('false')">False</button>
+      (click)="onLandingClick('false')">False</button>
     </div>
   </div>
-
-  <div>
+  
+  <div class="main-body">
     <div class="row">
       <app-launch-card class="col-md-3 col-sm-6 col-xs-12" [launchData]="data" *ngFor="let data of launchData"></app-launch-card>
     </div>
@@ -33,3 +44,4 @@
   </div>
 </div>
 <ngx-ui-loader></ngx-ui-loader>
+</div>

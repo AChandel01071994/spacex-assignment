@@ -1,7 +1,18 @@
+.container {
+  max-width: 1440px;
+}
+
 .active-year {
   background-color: green !important;
 }
 
 .not-active-year {
   background-color: greenyellow;
+}
+
+.filter-wrap {
+  width: 200px;
+  .btn-wrap {
+    
+  }
 }
